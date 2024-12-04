@@ -12,14 +12,15 @@ $message = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  $guess = (int)$_POST['guess'];
- $_SESSION['attempts']++;
 
  if ($guess < 1 || $guess > 100) {
   $message = "Your guess is not between 1 and 100, please try again.";
  } elseif ($guess < $randomNumber) {
   $message = "Please pick a higher number.";
+  $_SESSION['attempts']++;
  } elseif ($guess > $randomNumber) {
   $message = "Please pick a lower number.";
+  $_SESSION['attempts']++;
  } else {
   $message = "You win!";
   session_destroy();
